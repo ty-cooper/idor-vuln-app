@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block main_content %}
+
+{% if email %}
+
+<div class="account__home">
+    <h1>Welcome, {{ email }}</h1>
+
+    <p>To view your passwords please select the 'Account' tab.</p>
+</div>
+{% else %}
+
+<div class="account__home">
+    <div class="account__home--group">
+        <h1>Hello.</h1>
+        <h2>Welcome to PasswordApp</h2>
+    </div>
+
+    <div class="account__home--links">
+
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

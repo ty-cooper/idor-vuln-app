@@ -1,0 +1,2 @@
+FLASK_APP=IDOR_app
+FLASK_ENV=development

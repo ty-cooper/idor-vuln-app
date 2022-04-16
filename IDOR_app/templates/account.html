@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block main_content %}
+
+<div class="account__home">
+    <h1>Hello, {{ email }}</h1>
+
+    <h2 style="margin-top: 1.5rem;">View or Create Accounts</h2>
+    <div class="account__add-remove">
+        <div class="add__account">
+            <div class="form__home">
+
+                <form method="POST">
+                    <div class="form__unit">
+                        <label>
+                            URL
+                            <input type="url" name="url" value="{{ url }}" placeholder="https://" />
+                        </label>
+                    </div>
+                    <div class="form__unit">
+                        <label>
+                            Username
+                            <input type="username" name="username" value="{{ username }}" />
+                        </label>
+                    </div>
+                    <div class="form__unit">
+                        <label>
+                            Password
+                            <input type="password__add" name="password__add" />
+                        </label>
+                    </div>
+                    <input class="button" type="submit" value="Add Account" />
+                </form>
+
+            </div>
+        </div>
+
+
+
+        <div class="current__accounts">
+            <div class="center">
+            <p>Saved Accounts</p>
+            </div>
+
+            {% for password in passwords %}
+
+            <div class="account__card">
+                <dl>
+                    <dt>URL: {{ password['url'] }}</dt>
+                    <dd>Username: {{ password['username'] }}</dd>
+                    <dd>Password: {{ password['password__add'] }}</dd>
+                </dl>
+            </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

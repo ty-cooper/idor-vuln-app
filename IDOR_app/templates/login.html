@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block main_content %}
+<div class="account__home">
+    <div class="form__home">
+        <form method="POST">
+            <div class="form__unit">
+                <label>
+                    E-mail
+                    <input type="email" name="email" value="{{ email }}" />
+                </label>
+            </div>
+            <div class="form__unit">
+                <label>
+                    Password
+                    <input type="password" name="password" />
+                </label>
+            </div>
+            <input class="button" type="submit" value="Log in" />
+        </form>
+
+        {% for mesg in get_flashed_messages() %}
+        <p class="note" style="color: red;">{{ mesg }}</p>
+        {% endfor %}
+
+        <p class="note"><a href="{{ url_for('pages.signup') }}">Sign up</a> instead </p>
+
+
+    </div>
+</div>
+{% endblock %}

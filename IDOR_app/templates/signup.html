@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block main_content %}
+<div class="account__home">
+    <div class="form__home">
+        <form method="POST">
+            <div class="form__unit">
+                <label>
+                    E-mail
+                    <input type="email" name="email" />
+                </label>
+            </div>
+            <div class="form__unit">
+                <label>
+                    Password
+                    <input type="password" name="password" />
+                </label>
+            </div>
+            <input class="button" type="submit" value="Sign up" />
+        </form>
+        <p class="note"><a href="{{ url_for('pages.login') }}">Log in</a> instead </p>
+    </div>
+</div>
+{% endblock %}
