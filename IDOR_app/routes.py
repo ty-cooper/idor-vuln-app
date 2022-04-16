@@ -69,7 +69,7 @@ def signup():
         password = pbkdf2_sha256.hash(request.form.get("password"))
 
         # Better ID generation to output a complex ID for User object
-        id = uuid.uuid4.hex() 
+        id = uuid.uuid4().hex 
      
         user = User(id, email, password)
         user.save_to_mongo()
@@ -89,11 +89,7 @@ def protected():
 # Account details page
 @pages.route("/account", methods=["GET", "POST"])
 def account():
-    _id = request.args.get("user_id")
     user = User.from_mongo_email(session['email'])
-
-    if _id == None:
-        _id = user._id
 
     if request.method == "POST":
         username = request.form.get("username")
@@ -107,12 +103,12 @@ def account():
             "url": url
         }
         
-        current_app.db.PasswordsSaved.insert_one(formatted_account)
+        current_app.db.PasswordsSavedPatch.insert_one(formatted_account)
         
         flash("Successfully added account!")
-        return redirect(url_for('pages.account', user_id=_id))
+        return redirect(url_for('pages.account'))
        
-    passwords = current_app.db.PasswordsSaved.find({"user_id": int(_id)})
+    passwords = current_app.db.PasswordsSavedPatch.find({"user_id": user._id})
 
     return request.url, render_template("account.html", 
                             email=session.get("email"), 
