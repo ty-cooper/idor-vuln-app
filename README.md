@@ -5,7 +5,7 @@ Installation:
 
 1. I recommend using a virtual environment in the project directory
 2. Open the directory and run the venv
-3. "pip install -r requirements.txt"
+3. run "pip install -r requirements.txt" in venv activated terminal
 4. Swap the .envexample file for the provided .env file
 
 Good to go!
