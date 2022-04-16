@@ -29,7 +29,12 @@ Vulnerable App Solution:
 1. The URL has an exposed query with a direct reference to an object.
 2. The object the query is referencing happens to be the object that connects saved passwords to 
        the logged in user.
-3. It will appear as "https://172.0.0.1:5000/account/user_id=x" <- this is horrible as exploiting an IDOR here
+3. Try to add a new account to your 'Account' page. What do you notice?
+4. The URL should now have a direct object reference in it.
+
+![exposed_query](https://user-images.githubusercontent.com/91342671/163654433-296dc4a2-38fb-41b8-86f6-e6ab74b3fe7d.jpg)
+
+5. It will appear as "https://172.0.0.1:5000/account/user_id=x" <- this is horrible as exploiting an IDOR here
        is as simple as incrementing/decrementing the value without even needing a proxy catching requests.
 4. Give it a try and see if anyone else's saved accounts come up.
 
@@ -39,14 +44,14 @@ ____________________________________________________________________
 Patch:
 
 1. First of all- we swapped out the registered user_id generation from a simple += 1 increment:
-(incrementing code)
+
+![increment_code](https://user-images.githubusercontent.com/91342671/163654412-115ed502-b399-4698-8789-76804a1ac7e8.jpg)
 
 to a randomly generated hex value.
-(hex id code)
 
-2. This means even if the referenced object is exposed in the URL.. 
-(URL screenshot)
+![better_increment](https://user-images.githubusercontent.com/91342671/163654521-77578208-7349-4469-84f8-f0d534d13f5a.jpg)
 
+2. This means even if the referenced object is exposed in the URL,
 actually finding another user will be much more difficult to guess.
 
 3. We also removed the endpoint from populating the query in the searchbar. 
