@@ -15,6 +15,7 @@ from flask import (
 )
 from IDOR_app.modules.mongo import User
 from passlib.hash import pbkdf2_sha256
+import uuid
 
 
 pages = Blueprint(
@@ -67,11 +68,8 @@ def signup():
         # Hashing password for storage in DB
         password = pbkdf2_sha256.hash(request.form.get("password"))
 
-        # Horrible incrementing kickstart for _id generation. 
-        # Just bumps up 1 each time an account is added.
-        id = 1
-        for entry in current_app.db.AccountsSaved.find({}):
-            id += 1     
+        # Better ID generation to output a complex ID for User object
+        id = uuid.uuid4.hex() 
      
         user = User(id, email, password)
         user.save_to_mongo()
