@@ -10,14 +10,14 @@ class User:
 
 
     def __init__(self, _id, email, password):
-        self._id = _id # Patched: uuid.uuid4().hex if id is None else id, above is user_id=None
+        self._id = _id # Patched: uuid.uuid4().hex if id is None else id, above is user_id=None. This was done in routes to be more presented.
         self.email = email
         self.password = password
 
 
     def save_to_mongo(self):
         """Method to submit the object to the db"""
-        return current_app.db.AccountsSaved.insert_one(self.json())
+        return current_app.db.AccountsSavedPatch.insert_one(self.json())
 
 
     def json(self):
@@ -32,7 +32,7 @@ class User:
 
     @classmethod
     def from_mongo_id(cls, _id):
-        user_data = current_app.db.AccountsSaved.find_one({'_id': _id})
+        user_data = current_app.db.AccountsSavedPatch.find_one({'_id': _id})
         return cls(
             _id=user_data['_id'], 
             email=user_data['email'], 
@@ -42,7 +42,7 @@ class User:
 
     @classmethod
     def from_mongo_email(cls, email):
-        user_data = current_app.db.AccountsSaved.find_one({'email': email})
+        user_data = current_app.db.AccountsSavedPatch.find_one({'email': email})
         return cls(
             _id=user_data['_id'], 
             email=user_data['email'], 
