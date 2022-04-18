@@ -7,3 +7,5 @@
 #   - default_database for the database name you're connecting to
 
 MONGODB_URI=mongodb://mongodb_user:mongodb_password/127.0.0.1:27017/default_database
+
+# Delete this file and replace it with the provided '.env' file. This is just a placeholder
