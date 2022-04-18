@@ -7,6 +7,7 @@ Installation:
 2. Open the directory and run the venv
 3. run "pip install -r requirements.txt" in venv activated terminal
 4. Swap the .envexample file for the provided .env file
+       The env file contains the username/password/db name for connecting to a hosted cluster
 
 Good to go!
 
